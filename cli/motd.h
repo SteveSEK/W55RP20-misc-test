@@ -34,6 +34,9 @@
 // the image below relies on "braille" characters (UTF-8/Unicode) and requires a suitable
 // terminal font to render properly, specifically support for characters U+2800..U+28FF.
 const char *motd_ascii =
+/////////////////////////////////////////////////////////////////////////////////////
+// 20240614 disable logo 
+/*
 "\r\n"
 USH_SHELL_FONT_COLOR_YELLOW
 " ⣿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⣿ \r\n"
@@ -65,11 +68,17 @@ USH_SHELL_FONT_COLOR_YELLOW
 " ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿ \r\n"
 " ⣿⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣿ \r\n"
 USH_SHELL_FONT_STYLE_RESET;
+*/
+"\r\n";
+/////////////////////////////////////////////////////////////////////////////////////
 
 // the bbos ascii header is seperate from MOTD so we can choose to print just one.
 // it doesn't look right here because of the extra '\' escapes, but will magically
 // look great in the terminal.
 const char *bbos_header_ascii =
+/////////////////////////////////////////////////////////////////////////////////////
+// 20240614 disable logo 
+/*
 USH_SHELL_FONT_COLOR_YELLOW
 "                                   ___          ___                     \r\n"
 "          _____       _____       /  /\\        /  /\\                  \r\n"
@@ -94,5 +103,21 @@ USH_SHELL_FONT_COLOR_MAGENTA
 "]]\r\n"
 "\r\n"
 USH_SHELL_FONT_STYLE_RESET;
+*/
+"\r\n"
+"\r\n"
+USH_SHELL_FONT_COLOR_MAGENTA
+USH_SHELL_FONT_STYLE_BOLD
+"                [["
+USH_SHELL_FONT_COLOR_CYAN
+" Welcome to W5500-EVB-Pico! "
+USH_SHELL_FONT_COLOR_MAGENTA
+"]]\r\n"
+"\r\n"
+USH_SHELL_FONT_STYLE_RESET;
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 #endif /* MOTD_H */

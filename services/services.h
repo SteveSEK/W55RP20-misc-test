@@ -102,9 +102,15 @@
 // local variables within a service/task use this stack space.
 // If pvPortMalloc is called within a task, it will allocate directly from shared FreeRTOS heap.
 #define STACK_TASKMAN   512
-#define STACK_CLI       1024
-#define STACK_USB       1024
-#define STACK_STORMAN   1024
+////////////////////////////////////////////////////////////////////////
+// XXXX Thread Stack
+//#define STACK_CLI       1024
+//#define STACK_USB       1024
+//#define STACK_STORMAN   1024
+#define STACK_CLI       1024*2
+#define STACK_USB       512
+#define STACK_STORMAN   512
+////////////////////////////////////////////////////////////////////////
 #define STACK_WATCHDOG  configMINIMAL_STACK_SIZE // 256 by default
 #define STACK_HEARTBEAT configMINIMAL_STACK_SIZE
 
@@ -201,6 +207,8 @@ BaseType_t watchdog_service(void);
 */
 BaseType_t heartbeat_service(void);
 
+// 20240620 add W5x00Poll_service
+BaseType_t W5x00Poll_service(void);
 
 /************************
  * Service Arrays
@@ -216,6 +224,8 @@ static const ServiceFunc_t service_functions[] = {
     usb_service,
     storman_service,
     watchdog_service,
+    // 20240620 add W5x00Poll_service
+    W5x00Poll_service,
     heartbeat_service
 };
 
@@ -229,6 +239,8 @@ static const char *service_strings[] = {
     xstr(SERVICE_NAME_USB),
     xstr(SERVICE_NAME_STORMAN),
     xstr(SERVICE_NAME_WATCHDOG),
+    // 20240620 add W5x00Poll_service
+    xstr(wiznetpoll),
     xstr(SERVICE_NAME_HEARTBEAT)
 };
 
@@ -239,6 +251,8 @@ static const char *startup_services[] = {
     "usb",
     "cli",
     "storagemanager",
+    // 20240620 add W5x00Poll_service
+    "wiznetpoll",
     "watchdog"
 };
 

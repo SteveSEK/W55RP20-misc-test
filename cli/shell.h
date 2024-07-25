@@ -28,7 +28,9 @@
     #define PATH_MAX_SIZE  128
 #elif defined(PICO)
     #define BUF_IN_SIZE    128
-    #define BUF_OUT_SIZE   1024
+    // 20240615 for RAM overflow error
+    //#define BUF_OUT_SIZE   1024
+    #define BUF_OUT_SIZE   128
     #define PATH_MAX_SIZE  128
 #else
     #define BUF_IN_SIZE    32

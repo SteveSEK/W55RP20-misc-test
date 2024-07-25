@@ -222,3 +222,11 @@ char cli_usb_getc(void) {
 
 	return readchar;
 }
+
+char XXXX()
+{
+	if (tud_cdc_n_connected(CDC_ID_CLI) && tud_cdc_n_available(CDC_ID_CLI) > 0) {
+		return tud_cdc_n_read_char(CDC_ID_CLI);
+	}
+	return 0;	
+}

@@ -5,7 +5,9 @@ set(PROJ_NAME "my-bbos-proj")
 set(PROJ_VER "0.0")
 
 # CLI INTERFACE - 0: use UART for CLI (default), 1: use USB for CLI
-set(CLI_IFACE 0)
+# sekim 20240614 set(CLI_IFACE 1)
+#set(CLI_IFACE 0)
+set(CLI_IFACE 1)
 
 # MCU PLATFORM - set the MCU platform being used (i.e. the subdir in 'hardware/')
 set(PLATFORM rp2040)

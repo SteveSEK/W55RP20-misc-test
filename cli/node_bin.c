@@ -363,6 +363,78 @@ static void reboot_exec_callback(struct ush_object *self, struct ush_file_descri
     }
 }
 
+
+// 20240610 add w5500 test
+#include "w5500_func.h"
+static void w5500_exec_callback(struct ush_object *self, struct ush_file_descriptor const *file, int argc, char *argv[])
+{
+    if (argc == 1) {        
+    }
+    else if (argc == 4 && strcmp(argv[1], "init") == 0) {
+        void w5x00_init(char* szSPImode, char* szClockDiv);
+        w5x00_init(argv[2], argv[3]);
+    }
+    else if (argc == 2 && strcmp(argv[1], "info") == 0) {
+        void w5x00_info();
+        w5x00_info();
+    }
+    else if (argc == 3 && strcmp(argv[1], "read") == 0) {
+        void w5x00_read(char* szaddr);
+        w5x00_read(argv[2]);
+    }
+    else if (argc == 4 && strcmp(argv[1], "readbuff") == 0) {
+        void w5x00_readbuff(char* szaddr, char* szlen);
+        w5x00_readbuff(argv[2], argv[3]);
+    }
+    else if (argc == 4 && strcmp(argv[1], "writebuff") == 0) {
+        void w5x00_writebuff(char* szaddr, char* szlen);
+        w5x00_writebuff(argv[2], argv[3]);
+    }
+    else if (argc == 2 && strcmp(argv[1], "register") == 0) {
+        int w5500_viewregister();
+        w5500_viewregister();
+    }
+    else if (argc == 2 && strcmp(argv[1], "lwip") == 0) {
+        void w5x00_lwipinit(char* szIp, char* szMask, char* szGateway);
+        w5x00_lwipinit(0, 0, 0);
+    }
+    else {
+        shell_print("command syntax error, see 'help /bin/pico'");
+    }
+
+}
+
+static void pico_exec_callback(struct ush_object *self, struct ush_file_descriptor const *file, int argc, char *argv[])
+{
+    if (argc == 1) {        
+    }
+    else if (argc == 2 && strcmp(argv[1], "memory") == 0) {
+        void pico_memory_map();
+        pico_memory_map();
+    }
+    else if (argc == 5 && strcmp(argv[1], "memory") == 0) {
+        void pico_memory_dump(char* param1, char* param2, char* param3);
+        pico_memory_dump(argv[2], argv[3], argv[4]);
+    }
+    else if (argc == 2 && strcmp(argv[1], "pins") == 0) {
+        void pico_pins_monitor();
+        pico_pins_monitor();
+    }
+    else if (argc == 2 && strcmp(argv[1], "gpiotest") == 0) {
+        void pico_pin_test();
+        pico_pin_test();
+    }
+    else if (argc == 3 && strcmp(argv[1], "swd") == 0) {
+        void swd_xxrequest(char* param);
+        swd_xxrequest(argv[2]);
+    }
+    else {
+        shell_print("command syntax error, see 'help /bin/pico'");
+    }
+
+}
+
+
 // bin directory files descriptor
 static const struct ush_file_descriptor bin_files[] = {
     {
@@ -422,6 +494,40 @@ static const struct ush_file_descriptor bin_files[] = {
         .get_data = NULL,
         .set_data = NULL 
     }
+
+    ,
+    {
+        .name = "w5500",
+        .description = "w5500 test",
+        .help = "usage: w5500 \r\n"     
+                "       w5500 init spinormal 8           \r\n"
+                "       w5500 init spipio 4              \r\n"
+                "       w5500 info                       \r\n"
+                "       w5500 readbuff 0009 16           \r\n"
+                "       w5500 writebuff 0009 0008dcaabbee\r\n"
+                "       w5500 register                   \r\n"
+                "       w5500 lwip                       \r\n", 
+        .exec = w5500_exec_callback,
+        .get_data = NULL,
+        .set_data = NULL 
+    }
+    ,
+    {
+        .name = "pico",
+        .description = "pico command",
+        .help = "usage: pico \r\n"     
+                "       pico memory 0 00003400 00003800 \r\n"
+                "       pico memory 1 D0000000 D0000100 \r\n"
+                "       pico memory 2 D0000000 D0000100 \r\n"
+                "       pico memory \r\n"
+                "       pico gpiotest \r\n"
+                "       pico pins \r\n",
+
+        .exec = pico_exec_callback,
+        .get_data = NULL,
+        .set_data = NULL 
+    }
+
 };
 
 // bin directory handler

@@ -368,7 +368,9 @@ int aux_uart_read(uint8_t *rx_data, size_t rx_len);
 *************************/
 
 // Enable I2C0 peripheral - setting to false will disable (not initialized at boot)
-#define HW_USE_I2C0 true
+// 20240615 for RAM overflow error
+//#define HW_USE_I2C0 true
+#define HW_USE_I2C0 false
 
 // I2C0 Settings
 #define I2C0_ID            i2c0

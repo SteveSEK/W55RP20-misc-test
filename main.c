@@ -18,7 +18,6 @@
 #include "services/services.h"
 #include "task.h"
 
-
 /************************
  * Here be main
 *************************/

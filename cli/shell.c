@@ -26,6 +26,7 @@
 #include "rtos_utils.h"
 
 
+
 // microshell character read interface
 static int ush_read(struct ush_object *self, char *ch)
 {
@@ -40,6 +41,7 @@ static int ush_read(struct ush_object *self, char *ch)
         *ch = inchar;
         return 1;
     }
+    
     return 0;
 }
 

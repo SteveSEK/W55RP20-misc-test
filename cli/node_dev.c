@@ -28,6 +28,11 @@
 #include "task.h"
 #include "queue.h"
 
+#include "w5500_func.h"
+#include "w5500_misc.h"
+#include "w5500_polltask.h"
+#include "w5500_registerview.h"
+
 
 /**
 * @brief '/dev/led' get data callback function.
@@ -66,6 +71,7 @@ size_t led_get_data_callback(struct ush_object *self, struct ush_file_descriptor
 */
 void led_set_data_callback(struct ush_object *self, struct ush_file_descriptor const *file, uint8_t *data, size_t size)
 {
+    shprintf2("XXX 200-2 : %s, %s", file, data);
     if (strcmp(data, "0") == 0) {
         onboard_led_set(0);
     } else if (strcmp(data, "1") == 0) {
@@ -73,6 +79,7 @@ void led_set_data_callback(struct ush_object *self, struct ush_file_descriptor c
     } else {
         shell_print("set value should be <0> or <1>");
     }
+    shprintf2("XXX 200-9 : %s, %s", file, data);
 }
 
 /**

@@ -33,6 +33,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/git_version cmake_git_version_tracking)
 add_executable(${PROJ_NAME}
     main.c
 )
+
 target_link_libraries(${PROJ_NAME} PUBLIC
     FreeRTOS-Kernel
     FreeRTOS-Kernel-Heap4
@@ -46,6 +47,14 @@ target_link_libraries(${PROJ_NAME} PUBLIC
     cmsis_core
     tinyusb_device
     ${hardware_libs}
+    ############################################
+    # sekim 20240614 CMakeList Changed : link libraries
+    ETHERNET_FILES
+    IOLIBRARY_FILES
+    lwip
+    WIZ_LWIP_FILES
+    pico_wiznet_spi_pio
+    ############################################
 )
 target_include_directories(${PROJ_NAME} PUBLIC
     ${PROJECT_SOURCE_DIR}
@@ -64,6 +73,43 @@ if(DEFINED hardware_dir)
     add_subdirectory(${hardware_dir})
 endif()
 
+
+
+########################################################################
+# sekim 20240614 CMakeList Changed : add somethings
+set(LWIP_PATH ${PROJECT_SOURCE_DIR}/libraries/pico-extras/lib/lwip)
+set(WIZNET_CHIP W5500)
+
+if(${WIZNET_CHIP} STREQUAL W5100S)
+    add_definitions(-D_WIZCHIP_=W5100S)
+elseif(${WIZNET_CHIP} STREQUAL W5500)
+    add_definitions(-D_WIZCHIP_=W5500)
+else()
+    message(FATAL_ERROR "WIZNET_CHIP is wrong = ${WIZNET_CHIP}")
+endif()
+
+message(STATUS "WIZNET_CHIP = ${WIZNET_CHIP}")
+
+if(NOT DEFINED WIZNET_DIR)
+    set(WIZNET_DIR ${CMAKE_SOURCE_DIR}/libraries/ioLibrary_Driver)
+    message(STATUS "WIZNET_DIR = ${WIZNET_DIR}")
+endif()
+
+if(NOT DEFINED PORT_DIR)
+    set(PORT_DIR ${CMAKE_SOURCE_DIR}/port)
+    message(STATUS "PORT_DIR = ${PORT_DIR}")
+endif()
+
+# Add libraries in subdirectories
+add_subdirectory(${PROJECT_SOURCE_DIR}/libraries)
+add_subdirectory(${PROJECT_SOURCE_DIR}/libraries/pico-extras/src/rp2_common/lwip lwip)
+add_subdirectory(${PORT_DIR})
+add_subdirectory(${PORT_DIR}/pio)
+###########################################################
+
+
+
+
 # add any additional definitions, options
 target_compile_definitions(${PROJ_NAME} PUBLIC 
     CFG_TUSB_CONFIG_FILE="hardware_config.h" # override standard TinyUSB config file location
@@ -71,7 +117,9 @@ target_compile_definitions(${PROJ_NAME} PUBLIC
 target_compile_options(
     ${PROJ_NAME}
     PRIVATE
-    -Werror -g -O0
+    # sekim 20240614 CMakeList Changed : waring is not error 
+    #-Werror -g -O0
+    -g -O3
 )
 # TODO: try to add -Wall and -Wextra to compile options to clean up more warnings
 
@@ -79,3 +127,5 @@ target_compile_options(
 if(COMMAND hardware_build_extra)
     cmake_language(CALL hardware_build_extra)
 endif()
+
+

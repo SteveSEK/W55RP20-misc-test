@@ -27,6 +27,14 @@ add_library(cli STATIC
     ${CMAKE_CURRENT_LIST_DIR}/node_mnt.c
     ${CMAKE_CURRENT_LIST_DIR}/node_etc.c
     ${CMAKE_CURRENT_LIST_DIR}/node_lib.c
+    # sekim 20240614 CMakeList Changed : add source files
+    ${CMAKE_CURRENT_LIST_DIR}/w5500_func.c
+    ${CMAKE_CURRENT_LIST_DIR}/w5500_pico_func.c
+    ${CMAKE_CURRENT_LIST_DIR}/w5500_pico_peri_func.c
+    ${CMAKE_CURRENT_LIST_DIR}/w5500_misc.c
+    ${CMAKE_CURRENT_LIST_DIR}/w5500_polltask.c
+    ${CMAKE_CURRENT_LIST_DIR}/w5500_registerview.c
+    ${PROJECT_SOURCE_DIR}/libraries/pico-extras/src/rp2_common/pico_rand/rand.c
 )
 target_link_libraries(cli PUBLIC
     microshell
@@ -43,10 +51,25 @@ target_include_directories(cli PUBLIC
     ${PROJECT_SOURCE_DIR}/services
     ${PROJECT_SOURCE_DIR}/littlefs/littlefs
     ${PROJECT_SOURCE_DIR}/git_version
+    # sekim 20240614 CMakeList Changed : add include directory 
+    ${PROJECT_SOURCE_DIR}/libraries/ioLibrary_Driver/Ethernet
+    ${PROJECT_SOURCE_DIR}/libraries/ioLibrary_Driver/Ethernet/W5500
+    ${PROJECT_SOURCE_DIR}/port/ioLibrary_Driver/inc
+    ${PROJECT_SOURCE_DIR}/port/lwip
+    ${PROJECT_SOURCE_DIR}/port/pio/include
+    ${PROJECT_SOURCE_DIR}/port
+    ${PICO_SDK_PATH}/lib/lwip/src/include
+    ${PICO_SDK_PATH}/src/rp2_common/pico_lwip/include
+    ${PICO_SDK_PATH}/src/rp2_common/pico_rand/include
+    ${PICO_SDK_PATH}/src/rp2_common/hardware_spi/include
+    ${PICO_SDK_PATH}/src/rp2_common/hardware_dma/include
 )
+
 target_compile_options(
     cli
     PRIVATE
-    -Werror -g -O0
+    # sekim 20240614 CMakeList Changed : waring is not error 
+    #-Werror -g -O0
+    -g -O3
 )
 # TODO: try to add -Wall and -Wextra to compile options to clean up more warnings
