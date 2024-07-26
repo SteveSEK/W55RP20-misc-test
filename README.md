@@ -5,6 +5,11 @@
 Explore the basic functions of the W55RP20 through shell-based commands.  
 ![image](https://github.com/user-attachments/assets/75149c50-d844-4fe7-9945-0d2aea5dee94)  
 
+## Quick Start Firmware
+* You can start this quickly with these compiled files.
+  - **[Firmware for W55RP20 (452KB)](W55RP20.uf2)**
+  - **[Firmware for W5500-EVB-PICO (452KB)](W5500-EVB-PICO.uf2)**
+
 
 ### **W5500 Initialization**
 Use the following commands to initialize the W5500 in PIO mode on the RP2040.
