@@ -49,6 +49,21 @@ Use the following commands to check the status of the RP2040's GPIO or perform s
 ![image](https://github.com/user-attachments/assets/f2ace8cf-c1ad-453b-8af2-d1fccb14f028)
 
 
+### **W5500 MacRaw mode**
+Use the following commands to send or receive raw packet data in W5500 MacRaw mode.
+Below is an example of testing W5500's MacRaw mode.  
+![image](https://github.com/user-attachments/assets/c573ebf9-e69b-4947-a3c6-4c3a24ccaa31)
+
+The packet sent above was successfully received on the PC.  
+![image](https://github.com/user-attachments/assets/35bf4c13-981a-4116-a151-8fe831940121)
+
+The packet was created using [Colasoft Packet Builder](https://www.colasoft.com/packet_builder/).
+![image](https://github.com/user-attachments/assets/20fc5fa1-ab5c-4374-bea3-d7e222040cbe)
+
+The following is a screen showing packet data received in W5500's MacRaw mode.  
+![image](https://github.com/user-attachments/assets/fa19d3a0-55c9-4ef6-b53f-b785df7c9610)
+
+
 ### **Useful CLI Commands**
 ```sh
 /bin/reboot
@@ -73,5 +88,14 @@ Use the following commands to check the status of the RP2040's GPIO or perform s
 
 /bin/pico pins
 /bin/pico gpiotest
+
+/bin/pico spi c1,cd3,010203
+
+/bin/w5500 macraw socket
+/bin/w5500 macraw send
+ffffffffffff 0008dc112233 8100 03e9 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+/bin/w5500 macraw recv
+/bin/w5500 macraw close
+
 ```
 
