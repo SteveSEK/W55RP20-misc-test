@@ -93,7 +93,7 @@ The following is a screen showing packet data received in W5500's MacRaw mode.
 
 /bin/w5500 macraw socket
 /bin/w5500 macraw send
-ffffffffffff 0008dc112233 8100 03e9 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ffffffffffff 0008dc112233 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 /bin/w5500 macraw recv
 /bin/w5500 macraw close
 
