@@ -3,9 +3,10 @@
 **Project for Various Tests on W55RP20**
 
 ## Quick Start Firmware
-* You can start this quickly with these compiled files.
-  - **[Firmware for W55RP20 (452KB)](W55RP20.uf2)**
-  - **[Firmware for W5500-EVB-PICO (452KB)](W5500-EVB-PICO.uf2)**
+* You can start this quickly with these compiled files.  
+  - **[Firmware for W55RP20 (202406)](W55RP20.uf2)**
+  - **[Firmware for W5500-EVB-PICO (202406)](W5500-EVB-PICO.uf2)**
+  - **[Firmware for W5500-EVB-PICO (202411)](W5500-EVB-PICO.uf2(20241121).uf2)**
 
 
 Explore the basic functions of the W55RP20 through shell-based commands.  
