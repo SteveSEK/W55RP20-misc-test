@@ -49,6 +49,10 @@ Use the following commands to check the memory map of the RP2040.
 Use the following commands to check the status of the RP2040's GPIO or perform simple tests.
 ![image](https://github.com/user-attachments/assets/f2ace8cf-c1ad-453b-8af2-d1fccb14f028)
 
+### **W55RP20 iPerf Test**
+Use the following commands to check throughput of W55RP20 with iPerf-tool.
+![{60D5EABE-E1B0-4404-886E-94D4C0E976D0}](https://github.com/user-attachments/assets/a56cde5f-4258-4934-8f3f-09289663388a)
+![{C90B6BE1-3A41-4411-A1A8-B7400E8B3E0E}](https://github.com/user-attachments/assets/e1ba71c6-8989-4355-9214-dd9a191d1071)
 
 ### **W5500 MacRaw mode**
 Use the following commands to send or receive raw packet data in W5500 MacRaw mode.
